@@ -7,7 +7,7 @@ function love.load()
   windowWidth = love.graphics.getWidth()
   windowHeight = love.graphics.getHeight()
 
-  map = sti("gfx/map.lua",{"box2d"})
+  map = sti("gfx/boom.lua",{"box2d"})
 
   map:box2d_init(world)
   map:addCustomLayer("Sprite Layer",3)
