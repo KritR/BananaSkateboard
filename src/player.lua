@@ -24,20 +24,24 @@ function makePlayer(layer)
     self.player.y = self.player.body:getY()
     x,y = self.player.body:getLinearVelocity()
   --here we are going to create some keyboard events
-    if love.keyboard.isDown("right") then --press the right arrow key to push the ball to the right
+    rightTouch = {x_initial = 0, y_initial = 0, x_final = 0, y_final = 0}
+    rightTouch = touch_input or rightTouch
+
+    if love.keyboard.isDown("right") or (rightTouch.x_final - rightTouch.x_initial) > 0 then --press the right arrow key to push the ball to the right
       layer.player.body:applyForce(400, 0)
     end
-    if love.keyboard.isDown("left") then --press the left arrow key to push the ball to the left
+    if love.keyboard.isDown("left") or (rightTouch.x_final  - rightTouch.x_initial) < 0 then --press the left arrow key to push the ball to the left
       layer.player.body:applyForce(-400, 0)
     end
-    if love.keyboard.isDown("up") then 
+    if love.keyboard.isDown("up") or player_jump then 
       if math.abs(y) < 0.001 then
         layer.player.body:setLinearVelocity(x, -600)
       end
     end
-    if love.keyboard.isDown("r")then
+    if love.keyboard.isDown("r") then
       layer.player.body:setPosition(325,325)
     end
+    player_jump = false
   end
 
   layer.draw = function(self)
