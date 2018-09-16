@@ -1,4 +1,5 @@
-
+dx = 0
+dy = 0
 function makeMonkey(layer)
   local monkey
   for k, object in pairs(map.objects) do
@@ -29,7 +30,7 @@ function makeMonkey(layer)
     self.monkey.x = self.monkey.body:getX()
     self.monkey.y = self.monkey.body:getY()
   end
- 
+
   layer.draw = function(self)
     x,y = self.monkey.body:getLinearVelocity()
     if dx >=0 then
