@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="100" height="25" tilewidth="32" tileheight="32" infinite="0" nextobjectid="5">
+<map version="1.0" tiledversion="1.1.6" orientation="orthogonal" renderorder="right-down" width="100" height="25" tilewidth="32" tileheight="32" infinite="0" nextobjectid="8">
  <tileset firstgid="1" source="tilesetB.tsx"/>
  <tileset firstgid="129" source="tilesetA.tsx"/>
  <layer name="Tile Layer 1" width="100" height="25">
   <properties>
-   <property name="collidable" type="bool" value="false"/>
+   <property name="collidable" type="bool" value="true"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -36,5 +36,8 @@
  </layer>
  <objectgroup name="Player">
   <object id="3" name="Player" x="224" y="218" width="32" height="64"/>
+ </objectgroup>
+ <objectgroup name="Enemy">
+  <object id="7" name="Monkey" x="1249.3" y="322.31" width="13.421" height="27"/>
  </objectgroup>
 </map>
