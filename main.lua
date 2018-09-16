@@ -20,7 +20,7 @@ function love.load()
   windowWidth = love.graphics.getWidth()
   windowHeight = love.graphics.getHeight()
   Intro.load()
-  map = sti("gfx/boom2.lua",{"box2d"})
+  map = sti("gfx/boom4.lua",{"box2d"})
 
   map:box2d_init(world)
 
@@ -46,6 +46,10 @@ function love.update(dt)
   end
 end
 
+function clamp(x, min, max)
+  return math.max(math.min(x,max), min)
+end
+
 function love.draw()
   for i =0, love.graphics.getWidth() / backgroundsky:getWidth() do
     for j =0, love.graphics.getHeight() / backgroundsky:getHeight() do
@@ -56,16 +60,19 @@ function love.draw()
 
 
   if not intro then
+    local player = map.layers["Sprites"].player
+
+    x_offset = math.min(-player.x + (love.graphics.getWidth()/2), 0)
+    y_offset = math.min(-player.y + (love.graphics.getHeight()/2), 0);
+
     for i =0, love.graphics.getWidth() / background:getWidth() do
       for j =0, love.graphics.getHeight() / background:getHeight() do
-        love.graphics.draw(background, i * background:getWidth(), j * background:getHeight(), 0, 2, 2, background:getWidth() / 2, background:getHeight() / 2 )
+        love.graphics.draw(background, i * background:getWidth(), j * background:getHeight(), 0, 2, 2, (-x_offset*0.05)+ background:getWidth() / 2, (-y_offset*0.05) + background:getHeight() / 2 )
       end
     end
     local scale = 2
-    local player = map.layers["Sprites"].player
-
+    map:draw(x_offset, y_offset, 1,1 )
     love.graphics.setColor(255, 255, 255)
-    map:draw(-player.x + (love.graphics.getWidth()/2), -player.y + (love.graphics.getHeight()/2), 1,1 )
     -- love.graphics.setColor(255, 0, 0)
     -- map:box2d_draw()
 
