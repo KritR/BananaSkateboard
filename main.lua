@@ -19,11 +19,12 @@ function love.load()
   map = sti("gfx/boom2.lua",{"box2d"})
 
   map:box2d_init(world)
-  map:addCustomLayer("Sprite Layer",3)
 
-  local layer = map:addCustomLayer("Sprites", 1)
+  local layer = map:addCustomLayer("Sprites")
+  local layer2 = map:addCustomLayer("Sprites2")
+
   makePlayer(layer)
-  makeMonkey(layer)
+  makeMonkey(layer2)
 
   background = love.graphics.newImage("gfx/buildings.png")
   love.window.setMode(640,480)
