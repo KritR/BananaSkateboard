@@ -72,10 +72,10 @@ return {
       height = 25,
       visible = true,
       opacity = 1,
-      offsetx = -320,
-      offsety = -64,
+      offsetx = 0,
+      offsety = 0,
       properties = {
-        ["collidable"] = true
+        ["collidable"] = false
       },
       encoding = "lua",
       data = {
