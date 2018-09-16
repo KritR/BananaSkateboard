@@ -22,6 +22,20 @@ function makePlayer(layer)
   layer.update = function(self,dt)
     self.player.x = self.player.body:getX()
     self.player.y = self.player.body:getY()
+    
+  --here we are going to create some keyboard events
+    if love.keyboard.isDown("right") then --press the right arrow key to push the ball to the right
+      layer.player.body:applyForce(400, 0)
+    end
+    if love.keyboard.isDown("left") then --press the left arrow key to push the ball to the left
+      layer.player.body:applyForce(-400, 0)
+    end
+    if love.keyboard.isDown("up") then 
+      layer.player.body:applyForce(0, -800)
+    end
+    if love.keyboard.isDown("r")then
+      layer.player.body:setPosition(325,325)
+    end
   end
 
   layer.draw = function(self)
@@ -39,5 +53,6 @@ function makePlayer(layer)
     love.graphics.setPointSize(5)
     love.graphics.points(math.floor(self.player.x),math.floor(self.player.y))
   end
+
   map:removeLayer("Player")
 end
