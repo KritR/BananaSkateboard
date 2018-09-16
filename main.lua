@@ -4,7 +4,9 @@ require("src/player")
 require("src/Monkey")
 
 local intro = true
+local outro = false
 local Intro = require "src/Intro"
+local Outro = require "src/Outro"
 
 touch_input = {x_initial = 0, y_initial = 0, x_final = 0, y_final = 0}
 player_jump = false
@@ -35,21 +37,21 @@ function love.load()
 
   background = love.graphics.newImage("gfx/buildings.png")
   backgroundsky = love.graphics.newImage("gfx/sky.png")
-  
+
   --These callback function names can be almost any you want:
   world:setCallbacks(beginContact, endContact, preSolve, postSolve)
 
 end
 function beginContact(a, b, coll)
-  
+
 end
- 
+
 function endContact(a, b, coll)
- 
+
 end
- 
+
 function preSolve(a, b, coll)
- 
+
 end
 
 function love.touchpressed(id, x, y, dx, dy, pressure)
@@ -85,6 +87,8 @@ function love.update(dt)
     if Intro.update(dt) > 8 then
       intro = false
     end
+  elseif outro then
+    Outro.update(dt)
   else
     world:update(dt)
     map:update(dt)
@@ -104,7 +108,11 @@ function love.draw()
 
 
 
-  if not intro then
+  if intro then
+    Intro.draw()
+  elseif outro then
+    Outro.draw()
+  else
     local player = map.layers["Sprites"].player
 
     x_offset = math.min(-player.x + (love.graphics.getWidth()/2), 0)
@@ -121,9 +129,6 @@ function love.draw()
     -- love.graphics.setColor(255, 0, 0)
     -- map:box2d_draw()
 
-
     love.graphics.scale(scale)
-  else
-    Intro.draw()
   end
 end
