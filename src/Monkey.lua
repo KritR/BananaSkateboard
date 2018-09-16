@@ -1,3 +1,4 @@
+
 function makeMonkey(layer)
   local monkey
   for k, object in pairs(map.objects) do
@@ -17,12 +18,18 @@ function makeMonkey(layer)
     shape = love.physics.newRectangleShape(0,0,32,32)
   }
   layer.monkey.fixture = love.physics.newFixture(layer.monkey.body, layer.monkey.shape, 1)
-
   layer.update = function(self,dt)
+    local player = map.layers["Sprites"].player
+    self.monkey.speed = 50
+    dx = (player.x - self.monkey.x) * (self.monkey.speed * dt)
+	  dy = (player.y - self.monkey.y) * (self.monkey.speed * dt)
+	  local x = self.monkey.x + (dx * dt)
+    local y = self.monkey.y + (dy * dt)
+    self.monkey.body:setPosition(x,y)
     self.monkey.x = self.monkey.body:getX()
     self.monkey.y = self.monkey.body:getY()
   end
-
+ 
   layer.draw = function(self)
     love.graphics.draw(
       self.monkey.sprite,
