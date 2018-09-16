@@ -42,7 +42,7 @@ end
 
   for i =0, love.graphics.getWidth() / background:getWidth() do
       for j =0, love.graphics.getHeight() / background:getHeight() do
-        love.graphics.draw(background, i * background:getWidth(), j * background:getHeight(), 0, 1, 1, 0, background:getHeight() / 2 - 34)
+        love.graphics.draw(background, i * background:getWidth(), j * background:getHeight(), 0, 2, 2, background:getWidth() / 2, background:getHeight() / 2 )
       end
   end
 
