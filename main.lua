@@ -9,6 +9,7 @@ local Outro = require "src/Outro"
 
 
 function love.load()
+  love.window.setTitle( "Banana Skateboard" )
 
   music = love.audio.newSource("sfx/crazyfrog.mp3", "static")
 
