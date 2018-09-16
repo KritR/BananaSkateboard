@@ -3,7 +3,7 @@ local sti = require "sti/sti"
 require("src/player")
 require("src/Monkey")
 
-local intro = false
+local intro = true
 local Intro = require "src/Intro"
 
 function love.load()
