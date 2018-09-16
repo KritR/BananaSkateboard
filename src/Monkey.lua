@@ -42,8 +42,6 @@ function makeMonkey(layer)
       self.monkey.oy
     )
 
-    love.graphics.setPointSize(5)
-    love.graphics.points(math.floor(self.monkey.x),math.floor(self.monkey.y))
   end
 
   map:removeLayer("Enemy")

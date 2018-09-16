@@ -51,8 +51,6 @@ function makePlayer(layer)
       self.player.oy
     )
 
-    love.graphics.setPointSize(5)
-    love.graphics.points(math.floor(self.player.x),math.floor(self.player.y))
   end
 
   map:removeLayer("Player")
