@@ -20,7 +20,7 @@ function love.load()
   windowWidth = love.graphics.getWidth()
   windowHeight = love.graphics.getHeight()
   Intro.load()
-  map = sti("gfx/boom2.lua",{"box2d"})
+  map = sti("gfx/boom4.lua",{"box2d"})
 
   map:box2d_init(world)
 
