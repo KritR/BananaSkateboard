@@ -6,6 +6,9 @@ require("src/Monkey")
 local intro = true
 local Intro = require "src/Intro"
 
+touch_input = {x_initial = 0, y_initial = 0, x_final = 0, y_final = 0}
+player_jump = false
+
 function love.load()
 
   music = love.audio.newSource("sfx/crazyfrog.mp3", "static")
@@ -31,7 +34,6 @@ function love.load()
   makeMonkey(layer2)
 
   background = love.graphics.newImage("gfx/buildings.png")
-  love.window.setMode(640,480)
   backgroundsky = love.graphics.newImage("gfx/sky.png")
   
   --These callback function names can be almost any you want:
@@ -49,10 +51,33 @@ end
 function preSolve(a, b, coll)
  
 end
- 
+
+function love.touchpressed(id, x, y, dx, dy, pressure)
+  if(x > love.graphics.getWidth()/2) then
+    touch_input.x_initial = x
+    touch_input.y_initial = y
+  else
+    player_jump = true
+  end
+  if intro then
+    Intro.next()
+  end
+end
+
+function love.touchmoved(id, x, y, dx, dy, pressure)
+  if(x > love.graphics.getWidth()/2) then
+    touch_input.x_final = x
+    touch_input.y_final = y
+  end
+end
+
+function love.touchremoved(id, x, y, dx, dy, pressure)
+  touch_input = {x_initial = 0, y_initial = 0, x_final = 0, y_final = 0}
+end
+
 function postSolve(a, b, coll, normalimpulse, tangentimpulse)
-  if a:getUserData() =="player" or b:getUserData() == "player" then
-    body = a:getBody()
+  if((a:getUserData() == "player" and b:getUserData() == "monkey") or (a:getUserData() == "monkey" and b:getUserData() == "player")) then
+
   end
 end
 function love.update(dt)
