@@ -1,12 +1,17 @@
 local Intro = {}
 local stringArray = {"Harambe ... You stole my family .....", "GRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR",
                       "Where is my family .....", "GRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR",
-                      "You messed with the wrong mama jama ....................."}
+                      "You messed with the wrong mama jama .....................",
+                      "You will have to deal with my minions if you come after me",
+                      "That doesn't phase me",
+                      "GRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR"}
 
 function Intro.load()
   frame = 1
   font = love.graphics.getFont()
   spacePressed = false
+  bananaman = love.graphics.newImage("gfx/banana_sprite.png")
+  harambe = love.graphics.newImage("gfx/harambe.png")
 end
 
 function Intro.update(dt)
@@ -20,6 +25,8 @@ function Intro.draw()
   text = love.graphics.newText(font, stringArray[frame])
   love.graphics.draw(text, 20,400)
   love.graphics.setColor(255,255,255)
+  love.graphics.draw(bananaman, 0, 10, 0, 4, 4)
+  love.graphics.draw(harambe, 250, 0, 0, 0.9, 0.9)
 end
 
 function love.keyreleased(key)

@@ -37,7 +37,7 @@ function love.load()
 end
 function love.update(dt)
   if intro then
-    if Intro.update(dt) > 5 then
+    if Intro.update(dt) > 8 then
       intro = false
     end
   else
