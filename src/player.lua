@@ -40,16 +40,31 @@ function makePlayer(layer)
   end
 
   layer.draw = function(self)
-    love.graphics.draw(
-      self.player.sprite,
-      math.floor(self.player.x),
-      math.floor(self.player.y),
-      0,
-      1,
-      1,
-      self.player.ox,
-      self.player.oy
-    )
+    x,y = self.player.body:getLinearVelocity()
+    if x >= 0 then
+      love.graphics.draw(
+        self.player.sprite,
+        math.floor(self.player.x),
+        math.floor(self.player.y),
+        0,
+        1,
+        1,
+        self.player.ox,
+        self.player.oy
+      )
+    end
+    if x < 0 then
+      love.graphics.draw(
+        self.player.sprite,
+        math.floor(self.player.x),
+        math.floor(self.player.y),
+        0,
+        -1,
+        1,
+        self.player.ox,
+        self.player.oy
+      )
+    end
 
     love.graphics.setPointSize(5)
     love.graphics.points(math.floor(self.player.x),math.floor(self.player.y))
