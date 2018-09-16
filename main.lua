@@ -23,6 +23,10 @@ function love.load()
   local layer = map:addCustomLayer("Sprites", 1)
   makePlayer(layer) 
 
+  background = love.graphics.newImage("gfx/buildings.png")
+  love.window.setMode(640,480)
+  backgroundsky = love.graphics.newImage("gfx/sky.png")
+
 end
 function love.update(dt)
   world:update(dt)
@@ -30,6 +34,18 @@ function love.update(dt)
 end
 
 function love.draw()
+  for i =0, love.graphics.getWidth() / backgroundsky:getWidth() do
+    for j =0, love.graphics.getHeight() / backgroundsky:getHeight() do
+      love.graphics.draw(backgroundsky, i * backgroundsky:getWidth(), j * backgroundsky:getHeight(), 0, 1, 1, 0, backgroundsky:getHeight() / 2 - 34)
+    end
+end 
+
+  for i =0, love.graphics.getWidth() / background:getWidth() do
+      for j =0, love.graphics.getHeight() / background:getHeight() do
+        love.graphics.draw(background, i * background:getWidth(), j * background:getHeight(), 0, 1, 1, 0, background:getHeight() / 2 - 34)
+      end
+  end
+
   local scale = 2
   local screen_width = love.graphics.getWidth() / scale
   local screen_height = love.graphics.getHeight() / scale
@@ -40,7 +56,7 @@ function love.draw()
   cam:attach()
 
   map:draw(-cam.x + (love.graphics.getWidth()/2), -cam.y + (love.graphics.getHeight()/2), 1,1 )
-  map:box2d_draw()
+  --map:box2d_draw()
 
   cam:detach()
 
@@ -52,5 +68,6 @@ function love.draw()
   cam.x = lookX
   cam.y = lookY
   
+
 
 end
