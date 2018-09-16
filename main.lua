@@ -8,6 +8,12 @@ local Intro = require "src/Intro"
 
 function love.load()
 
+  music = love.audio.newSource("sfx/crazyfrog.mp3", "static")
+
+  music:setLooping(true)
+  music:play()
+
+
   world = love.physics.newWorld(0, 9.81*64, true) --create a world for the bodies to exist in with horizontal gravity of 0 and vertical gravity of 9.81
   love.physics.setMeter(64) --the height of a meter our worlds will be 64px
 
