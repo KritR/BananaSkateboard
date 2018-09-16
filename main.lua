@@ -31,7 +31,9 @@ function love.load()
 end
 function love.update(dt)
   if intro then
-    Intro.draw()
+    if Intro.update(dt) > 5 then
+      intro = false
+    end
   else
     world:update(dt)
     map:update(dt)
@@ -39,20 +41,20 @@ function love.update(dt)
 end
 
 function love.draw()
-  if not intro then
-    for i =0, love.graphics.getWidth() / backgroundsky:getWidth() do
-      for j =0, love.graphics.getHeight() / backgroundsky:getHeight() do
-        love.graphics.draw(backgroundsky, i * backgroundsky:getWidth(), j * backgroundsky:getHeight(), 0, 1, 1, 0, backgroundsky:getHeight() / 2 - 34)
-      end
+  for i =0, love.graphics.getWidth() / backgroundsky:getWidth() do
+    for j =0, love.graphics.getHeight() / backgroundsky:getHeight() do
+      love.graphics.draw(backgroundsky, i * backgroundsky:getWidth(), j * backgroundsky:getHeight(), 0, 1, 1, 0, backgroundsky:getHeight() / 2 - 34)
     end
+  end
 
+
+
+  if not intro then
     for i =0, love.graphics.getWidth() / background:getWidth() do
       for j =0, love.graphics.getHeight() / background:getHeight() do
         love.graphics.draw(background, i * background:getWidth(), j * background:getHeight(), 0, 2, 2, background:getWidth() / 2, background:getHeight() / 2 )
       end
     end
-
-
     local scale = 2
     local player = map.layers["Sprites"].player
 
@@ -66,6 +68,4 @@ function love.draw()
   else
     Intro.draw()
   end
-
-
 end
