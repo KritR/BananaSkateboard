@@ -1,25 +1,44 @@
-local Monkey = {}
+function makeMonkey(layer)
+  local player
+  for k, object in pairs(map.objects) do
+    if object.name == "Player" then
+      player = object
+      break
+    end
+  end
+  local sprite = love.graphics.newImage("gfx/banana_sprite.png")
+  layer.player = {
+    sprite = sprite,
+    x   = player.x,
+    y   = player.y,
+    ox  = sprite:getWidth()/2,
+    oy  = sprite:getHeight()/ 1.35,
+    body = love.physics.newBody(world, player.x, player.y, "dynamic"),
+    shape = love.physics.newRectangleShape(0,0,32,64)
+  }
+  layer.player.fixture = love.physics.newFixture(layer.player.body, layer.player.shape, 1)
+  layer.player.fixture:setRestitution(0.0)
 
-xPos = 0
-yPos = 0
-mWidth = 50
-mHeight = 50
+  layer.update = function(self,dt)
+    self.player.x = self.player.body:getX()
+    self.player.y = self.player.body:getY()
+  end
 
-function Monkey.load(world, x, y)
-  xPos = x;
-  yPos = y;
-  Monkey.body = love.physics.newBody(world, xPos, yPos, "dynamic")
-  Monkey.shape = love.physics.newRectangleShape(mWidth, mHeight)
-  Monkey.fixture = love.physics.newFixture(Monkey.body, Monkey.shape)
+  layer.draw = function(self)
+    love.graphics.draw(
+      self.player.sprite,
+      math.floor(self.player.x),
+      math.floor(self.player.y),
+      0,
+      1,
+      1,
+      self.player.ox,
+      self.player.oy
+    )
+
+    love.graphics.setPointSize(5)
+    love.graphics.points(math.floor(self.player.x),math.floor(self.player.y))
+  end
+
+  map:removeLayer("Player")
 end
-
-function Monkey.draw()
-  love.graphics.setColor(255, 255, 255)
-  love.graphics.polygon("fill", Monkey.body:getWorldPoints(Monkey.shape:getPoints()))
-end
-
-function Monkey.update()
-
-end
-
-return Monkey
