@@ -31,17 +31,31 @@ function makeMonkey(layer)
   end
  
   layer.draw = function(self)
-    love.graphics.draw(
-      self.monkey.sprite,
-      math.floor(self.monkey.x),
-      math.floor(self.monkey.y),
-      0,
-      1,
-      1,
-      self.monkey.ox,
-      self.monkey.oy
-    )
-
+    x,y = self.monkey.body:getLinearVelocity()
+    if dx >=0 then
+      love.graphics.draw(
+        self.monkey.sprite,
+        math.floor(self.monkey.x),
+        math.floor(self.monkey.y),
+        0,
+        -1,
+        1,
+        self.monkey.ox,
+        self.monkey.oy
+      )
+    end
+    if dx < 0 then
+      love.graphics.draw(
+        self.monkey.sprite,
+        math.floor(self.monkey.x),
+        math.floor(self.monkey.y),
+        0,
+        1,
+        1,
+        self.monkey.ox,
+        self.monkey.oy
+      )
+    end
   end
 
   map:removeLayer("Enemy")
