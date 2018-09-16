@@ -1,5 +1,5 @@
 function makeMonkey(layer)
-  local player
+--[[  local player
   for k, object in pairs(map.objects) do
     if object.name == "Player" then
       player = object
@@ -40,5 +40,5 @@ function makeMonkey(layer)
     love.graphics.points(math.floor(self.player.x),math.floor(self.player.y))
   end
 
-  map:removeLayer("Player")
+  map:removeLayer("Player")]]--
 end
