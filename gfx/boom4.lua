@@ -8,7 +8,7 @@ return {
   height = 100,
   tilewidth = 32,
   tileheight = 32,
-  nextobjectid = 19,
+  nextobjectid = 20,
   properties = {},
   tilesets = {
     {
@@ -59,7 +59,159 @@ return {
       properties = {},
       terrains = {},
       tilecount = 64,
-      tiles = {}
+      tiles = {
+        {
+          id = 0,
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 2.10079,
+                y = 1.63395,
+                width = 24.2758,
+                height = 30.3448,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 1,
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 4,
+                name = "",
+                type = "",
+                shape = "polyline",
+                x = 5.91398,
+                y = 7.16846,
+                width = 0,
+                height = 0,
+                rotation = 0,
+                visible = true,
+                polyline = {
+                  { x = 0, y = 0 },
+                  { x = 26.1649, y = 0 },
+                  { x = 26.3441, y = 24.7312 },
+                  { x = 2.87448, y = 24.7312 },
+                  { x = 2.86738, y = 16.129 },
+                  { x = -3.22581, y = 16.129 },
+                  { x = -3.31364, y = 12.8997 },
+                  { x = 0, y = 12.9032 },
+                  { x = -0.179211, y = 8.88178e-16 }
+                },
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 2,
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 3,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = -0.0518998,
+                y = 6.77659,
+                width = 29.6445,
+                height = 25.2095,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 3,
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = 6.5358,
+                y = 0.466843,
+                width = 19.374,
+                height = 31.5119,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        },
+        {
+          id = 4,
+          objectGroup = {
+            type = "objectgroup",
+            name = "",
+            visible = true,
+            opacity = 1,
+            offsetx = 0,
+            offsety = 0,
+            draworder = "index",
+            properties = {},
+            objects = {
+              {
+                id = 1,
+                name = "",
+                type = "",
+                shape = "rectangle",
+                x = -0.233421,
+                y = 13.5384,
+                width = 31.7453,
+                height = 18.6737,
+                rotation = 0,
+                visible = true,
+                properties = {}
+              }
+            }
+          }
+        }
+      }
     }
   },
   layers = {
@@ -177,6 +329,31 @@ return {
         50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50,
         50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50,
         50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, 50
+      }
+    },
+    {
+      type = "objectgroup",
+      name = "Keystone",
+      visible = true,
+      opacity = 1,
+      offsetx = 0,
+      offsety = 0,
+      draworder = "topdown",
+      properties = {},
+      objects = {
+        {
+          id = 19,
+          name = "Keystone",
+          type = "",
+          shape = "rectangle",
+          x = 2943.89,
+          y = 3133.17,
+          width = 32.6724,
+          height = 34.9256,
+          rotation = 0,
+          visible = true,
+          properties = {}
+        }
       }
     },
     {

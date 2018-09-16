@@ -2,14 +2,11 @@ local sti = require "sti/sti"
 
 require("src/player")
 require("src/Monkey")
+require("src/keystone")
 
-local intro = true
-local outro = false
 local Intro = require "src/Intro"
 local Outro = require "src/Outro"
 
-touch_input = {x_initial = 0, y_initial = 0, x_final = 0, y_final = 0}
-player_jump = false
 
 function love.load()
 
@@ -18,6 +15,19 @@ function love.load()
   music:setLooping(true)
   music:play()
 
+  startup()
+
+  --These callback function names can be almost any you want:
+
+end
+
+function startup()
+  intro = true
+  outro = false
+  Outro.reset()
+
+  touch_input = {x_initial = 0, y_initial = 0, x_final = 0, y_final = 0}
+  player_jump = false
 
   world = love.physics.newWorld(0, 9.81*64, true) --create a world for the bodies to exist in with horizontal gravity of 0 and vertical gravity of 9.81
   love.physics.setMeter(64) --the height of a meter our worlds will be 64px
@@ -34,13 +44,12 @@ function love.load()
 
   makePlayer(layer)
   makeMonkey(layer2)
+  makeKeystone()
 
   background = love.graphics.newImage("gfx/buildings.png")
   backgroundsky = love.graphics.newImage("gfx/sky.png")
 
-  --These callback function names can be almost any you want:
   world:setCallbacks(beginContact, endContact, preSolve, postSolve)
-
 end
 function beginContact(a, b, coll)
 
@@ -54,6 +63,15 @@ function preSolve(a, b, coll)
 
 end
 
+function love.keyreleased(key)
+  if key == "space" and outro then
+    startup()
+  end
+  if key == "space" and intro then
+    Intro.next()
+  end
+end
+
 function love.touchpressed(id, x, y, dx, dy, pressure)
   if(x > love.graphics.getWidth()/2) then
     touch_input.x_initial = x
@@ -63,6 +81,9 @@ function love.touchpressed(id, x, y, dx, dy, pressure)
   end
   if intro then
     Intro.next()
+  end
+  if outro then
+    startup()
   end
 end
 
@@ -79,7 +100,11 @@ end
 
 function postSolve(a, b, coll, normalimpulse, tangentimpulse)
   if((a:getUserData() == "player" and b:getUserData() == "monkey") or (a:getUserData() == "monkey" and b:getUserData() == "player")) then
-
+    outro = true
+  end
+  if((a:getUserData() == "player" and b:getUserData() == "keystone") or (a:getUserData() == "keystone" and b:getUserData() == "player")) then
+    Outro.succeeded()
+    outro = true
   end
 end
 function love.update(dt)
