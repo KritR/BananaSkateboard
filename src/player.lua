@@ -17,6 +17,7 @@ function makePlayer(layer)
     shape = love.physics.newRectangleShape(0,0,32,64)
   }
   layer.player.fixture = love.physics.newFixture(layer.player.body, layer.player.shape, 1)
+  layer.player.fixture:setUserData("player")
 
   layer.update = function(self,dt)
     self.player.x = self.player.body:getX()

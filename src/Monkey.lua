@@ -17,7 +17,9 @@ function makeMonkey(layer)
     body = love.physics.newBody(world, monkey.x, monkey.y, "dynamic"),
     shape = love.physics.newRectangleShape(0,0,32,32)
   }
+
   layer.monkey.fixture = love.physics.newFixture(layer.monkey.body, layer.monkey.shape, 1)
+  layer.monkey.fixture:setUserData("monkey")
   layer.update = function(self,dt)
     local player = map.layers["Sprites"].player
     self.monkey.speed = 50

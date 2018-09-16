@@ -24,7 +24,27 @@ function love.load()
   background = love.graphics.newImage("gfx/buildings.png")
   love.window.setMode(640,480)
   backgroundsky = love.graphics.newImage("gfx/sky.png")
+  
+  --These callback function names can be almost any you want:
+  world:setCallbacks(beginContact, endContact, preSolve, postSolve)
 
+end
+function beginContact(a, b, coll)
+  
+end
+ 
+function endContact(a, b, coll)
+ 
+end
+ 
+function preSolve(a, b, coll)
+ 
+end
+ 
+function postSolve(a, b, coll, normalimpulse, tangentimpulse)
+  if a:getUserData() =="player" or b:getUserData() == "player" then
+    body = a:getBody()
+  end
 end
 function love.update(dt)
   world:update(dt)
