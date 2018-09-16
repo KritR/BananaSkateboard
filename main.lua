@@ -3,6 +3,9 @@ local sti = require "sti/sti"
 require("src/player")
 require("src/Monkey")
 
+local intro = false
+local Intro = require "src/Intro"
+
 function love.load()
 
   world = love.physics.newWorld(0, 9.81*64, true) --create a world for the bodies to exist in with horizontal gravity of 0 and vertical gravity of 9.81
@@ -10,7 +13,7 @@ function love.load()
 
   windowWidth = love.graphics.getWidth()
   windowHeight = love.graphics.getHeight()
-
+  Intro.load()
   map = sti("gfx/boom2.lua",{"box2d"})
 
   map:box2d_init(world)
@@ -27,35 +30,42 @@ function love.load()
 
 end
 function love.update(dt)
-  world:update(dt)
-  map:update(dt)
+  if intro then
+    Intro.draw()
+  else
+    world:update(dt)
+    map:update(dt)
+  end
 end
 
 function love.draw()
-  for i =0, love.graphics.getWidth() / backgroundsky:getWidth() do
-    for j =0, love.graphics.getHeight() / backgroundsky:getHeight() do
-      love.graphics.draw(backgroundsky, i * backgroundsky:getWidth(), j * backgroundsky:getHeight(), 0, 1, 1, 0, backgroundsky:getHeight() / 2 - 34)
+  if not intro then
+    for i =0, love.graphics.getWidth() / backgroundsky:getWidth() do
+      for j =0, love.graphics.getHeight() / backgroundsky:getHeight() do
+        love.graphics.draw(backgroundsky, i * backgroundsky:getWidth(), j * backgroundsky:getHeight(), 0, 1, 1, 0, backgroundsky:getHeight() / 2 - 34)
+      end
     end
-  end
 
-  for i =0, love.graphics.getWidth() / background:getWidth() do
-    for j =0, love.graphics.getHeight() / background:getHeight() do
-      love.graphics.draw(background, i * background:getWidth(), j * background:getHeight(), 0, 2, 2, background:getWidth() / 2, background:getHeight() / 2 )
+    for i =0, love.graphics.getWidth() / background:getWidth() do
+      for j =0, love.graphics.getHeight() / background:getHeight() do
+        love.graphics.draw(background, i * background:getWidth(), j * background:getHeight(), 0, 2, 2, background:getWidth() / 2, background:getHeight() / 2 )
+      end
     end
+
+
+    local scale = 2
+    local player = map.layers["Sprites"].player
+
+    love.graphics.setColor(255, 255, 255)
+    map:draw(-player.x + (love.graphics.getWidth()/2), -player.y + (love.graphics.getHeight()/2), 1,1 )
+    -- love.graphics.setColor(255, 0, 0)
+    -- map:box2d_draw()
+
+
+    love.graphics.scale(scale)
+  else
+    Intro.draw()
   end
-
-
-  local scale = 2
-  local player = map.layers["Sprites"].player
-
-  love.graphics.setColor(255, 255, 255) 
-  map:draw(-player.x + (love.graphics.getWidth()/2), -player.y + (love.graphics.getHeight()/2), 1,1 )
-  -- love.graphics.setColor(255, 0, 0) 
-  -- map:box2d_draw()
-
-
-  love.graphics.scale(scale)
-
 
 
 end
