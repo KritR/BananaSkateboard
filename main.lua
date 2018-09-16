@@ -57,8 +57,10 @@ end
   local ty = math.floor(player.y-screen_height/2)
   cam:attach()
 
+  love.graphics.setColor(255, 255, 255) 
   map:draw(-cam.x + (love.graphics.getWidth()/2), -cam.y + (love.graphics.getHeight()/2), 1,1 )
-  --map:box2d_draw()
+  -- love.graphics.setColor(255, 0, 0) 
+  -- map:box2d_draw()
 
   cam:detach()
 
