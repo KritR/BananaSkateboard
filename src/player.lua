@@ -21,7 +21,7 @@ function makePlayer(layer)
   layer.update = function(self,dt)
     self.player.x = self.player.body:getX()
     self.player.y = self.player.body:getY()
-    
+    x,y = self.player.body:getLinearVelocity()
   --here we are going to create some keyboard events
     if love.keyboard.isDown("right") then --press the right arrow key to push the ball to the right
       layer.player.body:applyForce(400, 0)
@@ -30,7 +30,9 @@ function makePlayer(layer)
       layer.player.body:applyForce(-400, 0)
     end
     if love.keyboard.isDown("up") then 
-      layer.player.body:applyForce(0, -800)
+      if math.abs(y) < 0.001 then
+        layer.player.body:setLinearVelocity(x, -600)
+      end
     end
     if love.keyboard.isDown("r")then
       layer.player.body:setPosition(325,325)
