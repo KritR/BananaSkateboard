@@ -1,3 +1,6 @@
 [submodule "sti"]
 	path = sti
 	url = https://github.com/Karai17/Simple-Tiled-Implementation
+[submodule "hump"]
+	path = hump
+	url = https://github.com/vrld/hump
